@@ -48,5 +48,29 @@ func runCompilerTests (t *testing.T, tests[]compilerTestcase){
 		if err != nil {
 			t.Fatalf("testConstants failed %s", err)
 		}
+
+		func parse (input string ) *ast.Program {
+			l := lexer.New(input)
+			p := parser.New(l)
+			return p.ParserProgram()
+		}
+
+		func testInstructions (
+			expected []code.Instructions,
+			actual code.instructions,
+		)error{
+			concatted := concatInstruction(expected)
+
+			if len(actual) != len(concatted){
+				return fmt.errorf("wrong instructions length . \nwant=%q\ngot =%q", concatted, actual)
+			}
+
+			for i, ins:= range concatted {
+				if actual [i] != ins {
+					return fmt.Errorf("wrong instruction at %d.\nwant=%q\ngot =%q",i,concatted,actual)
+				}
+			}
+            return nil
+		}
 	}
 }
