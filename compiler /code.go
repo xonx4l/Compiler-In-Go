@@ -33,4 +33,18 @@ func Make(op Opcode, operands ...int) []byte {
 	  return ""
   }
 
- 
+  func ReadOperands (def *Definition, ins Instructions) ([]int, int ) {
+	operands := make ([]int, len(def.OperandsWidth))
+	offset :=0
+
+	for i, width := range def.operandWidths {
+		switch width {
+		case 2:
+			operands[i]= int(ReadUint16(ins[offset:]))
+		}
+
+		offset +=width
+	}
+
+	return operands, offset
+  }
