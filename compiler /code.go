@@ -29,3 +29,8 @@ func Make(op Opcode, operands ...int) []byte {
 
 	 return instruction
 }
+  func  (ins Instructions string () string {
+	  return ""
+  }
+
+ 
