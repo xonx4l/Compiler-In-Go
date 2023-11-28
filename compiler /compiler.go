@@ -31,3 +31,15 @@ type Bytecode struct {
 	Instructions code.Instructions
 	constants    []object.object
 }
+
+func (c *compiler) compile(node ast.Node) error {
+	switch node =: node.(type){
+	case *ast.program:
+		for _, s := range node.Statements{
+			err:= c.Compile(s)
+			 if err != nil {
+				return err
+			 }
+		}
+	}
+}
