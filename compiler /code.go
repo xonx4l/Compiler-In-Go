@@ -29,7 +29,7 @@ func Make(op Opcode, operands ...int) []byte {
 
 	 return instruction
 }
-  func  (ins Instructions string () string {
+  func  (ins Instructions) string () string {
 	  return ""
   }
 
@@ -47,4 +47,8 @@ func Make(op Opcode, operands ...int) []byte {
 	}
 
 	return operands, offset
+  }
+  func ReadUni16(ins Instructions) unit16 {
+	
+	return binary.BigEndian.unit16(ins)
   }
